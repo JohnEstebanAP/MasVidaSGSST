@@ -12,7 +12,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        String email = getIntent().getExtras().getString("email");
+      //  String email = getIntent().getExtras().getString("email");
 
 
     }
