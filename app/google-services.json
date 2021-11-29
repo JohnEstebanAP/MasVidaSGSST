@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "45304389622",
+    "project_id": "mas-vida-sg-sst-d74f0",
+    "storage_bucket": "mas-vida-sg-sst-d74f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45304389622:android:d03d6d49d1f153e86631d7",
+        "android_client_info": {
+          "package_name": "com.johnestebanap.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "45304389622-aemen2ncg69gvju6u60llnd2i9drkndn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.johnestebanap.myapplication",
+            "certificate_hash": "3f387d7ed1153e611e2fda8b1b32d4f691d5d4a0"
+          }
+        },
+        {
+          "client_id": "45304389622-qnhulpe9utrnfn1jf60hpvg43efvrqbs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrJxcmSULVtSoa_bQZv2kRIQT-jDjzAvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "45304389622-qnhulpe9utrnfn1jf60hpvg43efvrqbs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
