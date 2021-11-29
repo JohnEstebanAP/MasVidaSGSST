@@ -32,7 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
 
         } else {
-            startActivity(new Intent(this, AccesoModulos.class));
+            startActivity(new Intent(this, HomeActivity.class));
         }
         super.finish();//para finalizar la actividad y no quede en segundo plano avierta por detras luego de avirla otra actividad.
     }
