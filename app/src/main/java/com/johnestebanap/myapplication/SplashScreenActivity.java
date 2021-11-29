@@ -16,12 +16,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Este puede generar error por lo que lo adecuado es colocarlo dentro de un try catch
-//        try{
-//            //El metodo Thread nos permite utilizar hilos, este nos permite con el metodo sleep detenernos o detener nuestro porgrama en un punto espesifico por milisegundos.
-//            Thread.sleep(3000);//Para deternerlo durante 2 segundos
-//        }catch(InterruptedException e){
-//            e.printStackTrace();
-//        }
+        try{
+            //El metodo Thread nos permite utilizar hilos, este nos permite con el metodo sleep detenernos o detener nuestro porgrama en un punto espesifico por milisegundos.
+            Thread.sleep(2000);//Para deternerlo durante 2 segundos
+        }catch(InterruptedException e){
+            e.printStackTrace();
+        }
         mAuth = FirebaseAuth.getInstance();
     }
     @Override
@@ -30,7 +30,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
             startActivity(new Intent(this, MainActivity.class));
-
         } else {
             startActivity(new Intent(this, HomeActivity.class));
         }
