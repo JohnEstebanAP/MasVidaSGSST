@@ -69,7 +69,8 @@
                 android:paddingHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                android:elevation="5dp"/>
 
             <EditText
                 android:id="@+id/editTextNombre"
@@ -87,6 +88,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
+                android:elevation="5dp"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNombreUsuario" />
 
             <EditText
@@ -104,6 +106,7 @@
                 android:paddingHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:elevation="5dp"
                 app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
 
             <EditText
@@ -116,6 +119,7 @@
                 android:layout_weight="9"
                 android:background="@drawable/new_style"
                 android:ems="10"
+                android:elevation="5dp"
                 android:hint="@string/registro_cédula"
                 android:inputType="number"
                 android:paddingHorizontal="10dp"
@@ -132,6 +136,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_weight="9"
                 android:background="@drawable/new_style"
+                android:elevation="5dp"
                 android:ems="10"
                 android:hint="@string/registro_teléfono"
                 android:inputType="number"
@@ -149,6 +154,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_weight="9"
                 android:background="@drawable/new_style"
+                android:elevation="5dp"
                 android:ems="10"
                 android:hint="@string/registro_celular"
                 android:inputType="number"
@@ -166,6 +172,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_weight="9"
                 android:background="@drawable/new_style"
+                android:elevation="5dp"
                 android:ems="10"
                 android:hint="@string/registro_dirección"
                 android:inputType="textPersonName"
@@ -186,6 +193,7 @@
                 android:ems="10"
                 android:hint="@string/registro_contraseña"
                 android:inputType="textPersonName"
+                android:elevation="5dp"
                 android:paddingHorizontal="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -199,6 +207,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/new_style"
+                android:elevation="5dp"
                 android:paddingHorizontal="10dp"
                 android:text="Seleccionar rol"
                 android:textSize="20sp"></TextView>
@@ -208,6 +217,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:elevation="5dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/terminos_condiciones"></CheckBox>
@@ -222,6 +232,7 @@
                 android:background="@drawable/new_button"
                 android:text="@string/registro_finalizar"
                 android:textColor="@color/white"
+                android:elevation="5dp"
                 android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
