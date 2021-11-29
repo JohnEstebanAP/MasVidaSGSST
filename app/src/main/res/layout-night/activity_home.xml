@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondo_darck"
     tools:context=".HomeActivity">
 
 
@@ -82,7 +83,6 @@
         android:layout_marginEnd="40dp"
         android:text="@string/empleado"
         android:textSize="18dp"
-        android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
