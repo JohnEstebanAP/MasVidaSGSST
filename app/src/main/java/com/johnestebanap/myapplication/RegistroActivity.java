@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +32,7 @@ import java.util.Map;
 public class RegistroActivity extends AppCompatActivity {
     private String userId;
     private FirebaseAuth mAuth;
-    //private FirebaseFirestore db;
+    private FirebaseFirestore db;
 
     private EditText editTextNombreUsuario, editContraseña, editTextNombre, editTextApellido, editTextCedula, editTextTelefono, editCelular, editDireccion;
     private TextView TxvSelectRole;
@@ -43,7 +45,7 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         mAuth = FirebaseAuth.getInstance();
-        //db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         editTextNombreUsuario = findViewById(R.id.editTextNombreUsuario);
         editContraseña = findViewById(R.id.editContraseña);
@@ -108,52 +110,51 @@ public class RegistroActivity extends AppCompatActivity {
             Toast.makeText(this, "pro favor completar el campo del rol del usuario", Toast.LENGTH_SHORT).show();
             TxvSelectRole.requestFocus();
         } else {
+//            mAuth.createUserWithEmailAndPassword(emailUser, password).addOnCompleteListener(
+//                    new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if (task.isSuccessful()) {
+//                                showHome(emailUser);
+//                            } else {
+//                                showAlertError();
+//                            }
+//                        }
+//                    }
+//            );
+
             mAuth.createUserWithEmailAndPassword(emailUser, password).addOnCompleteListener(
                     new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                userId = mAuth.getCurrentUser().getUid();
+                                DocumentReference documentReference = db.collection("users").document(userId);
+
+                                Map<String, Object> user = new HashMap<>();
+                                user.put("Email", emailUser);
+                                user.put("Nombre", name);
+                                user.put("Apellido", apellido);
+                                user.put("Cedula", cedula);
+                                user.put("Telefono", telefono);
+                                user.put("Celular", celular);
+                                user.put("Direccion", direccion);
+                                user.put("Rol", rol);
+
+                                //   registro los datos nuevos con el metodo del set.(user)
+                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(@NonNull Void unused) {
+                                        Toast.makeText(RegistroActivity.this, "Datos registrados", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                showAlertExito();
                                 showHome(emailUser);
                             } else {
                                 showAlertError();
                             }
                         }
-                    }
-            );
-
-//            mAuth.signInWithEmailAndPassword(nameUser, password).addOnCompleteListener(
-//                    new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()) {
-//                                userId = mAuth.getCurrentUser().getUid();
-//                                // DocumentReference documentReference = db.collection("users").document(userId);
-//
-//                                Map<String,Object> user = new HashMap<>();
-//                                user.put("Usuario", nameUser);
-//                                user.put("Nombre", name);
-//                                user.put("Apellido", apellido);
-//                                user.put("Cedula",cedula);
-//                                user.put("Telefono",telefono);
-//                                user.put("Celular", celular);
-//                                user.put("Direccion", direccion);
-//                                user.put("Rol", rol);
-//
-//                                //regstro los datos nuevos con el metodo del set.(user)
-////                                documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>(){
-////                                    @Override
-////                                    public void onSuccess(@NonNull Void unused) {
-////                                        Toast.makeText(RegistroActivity.this, "Datos registrados", Toast.LENGTH_SHORT).show();
-////                                    }
-////                                });
-//                                Toast.makeText(RegistroActivity.this, "Usuario Registrado", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(RegistroActivity.this, HomeActivity.class));
-//                            } else {
-//                                Toast.makeText(RegistroActivity.this, "Usuario no registrado"+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
-
+                    });
         }
     }
 
@@ -161,6 +162,14 @@ public class RegistroActivity extends AppCompatActivity {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("email", email);
         startActivity(intent);
+    }
+
+    private void showAlertExito() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegistroActivity.this);
+        alertDialog.setTitle("¡Felicidades!");
+        alertDialog.setMessage("Registro exitoso");
+        alertDialog.setPositiveButton("Aceptar", null);
+        alertDialog.create().show();
     }
 
     private void showAlertError() {

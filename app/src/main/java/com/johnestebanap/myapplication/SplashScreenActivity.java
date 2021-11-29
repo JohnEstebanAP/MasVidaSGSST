@@ -36,6 +36,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         } else {
             startActivity(new Intent(this, LoginActivity.class));
        }
-//        super.finish();//para finalizar la actividad y no quede en segundo plano avierta por detras luego de avirla otra actividad.
+       super.finish();//para finalizar la actividad y no quede en segundo plano avierta por detras luego de avirla otra actividad.
     }
 }
