@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="DatosList">
+        <item>Alerta 1</item>
+        <item>Alerta 2</item>
+        <item>Alerta 3</item>
+        <item>Alerta 4</item>
+        <item>Alerta 5</item>
+        <item>Alerta 6</item>
+        <item>Alerta 7</item>
+        <item>Alerta 8</item>
+        <item>Alerta 9</item>
+        <item>Alerta 10</item>
+
+
+
+
+    </string-array>
+</resources>

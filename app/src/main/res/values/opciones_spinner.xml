@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="select_roles">
+        <item>Seleccione un ro</item>
+        <item>Administrador</item>
+        <item>Empleado</item>
+        <item>Supervisor(encargado)</item>
+        <item>Presidente(Cocacola)</item>
+        <item>Presidente(Copasst)</item>
+        <item>Presidente(BE)</item>
+
+    </array>
+</resources>

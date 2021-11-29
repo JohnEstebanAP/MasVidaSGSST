@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">MasVidaSGSST</string>
+    <string name="registro_NombreUsuario">Nombre de Usuario</string>
+    <string name="registro_nombre">Nombre</string>
+    <string name="registro_apellido">Apellido</string>
+    <string name="registro_cédula">Cédula</string>
+    <string name="registro_teléfono">Teléfono</string>
+    <string name="registro_celular">Celular</string>
+    <string name="registro_dirección">Dirección</string>
+    <string name="registro_contraseña">Contraseña</string>
+    <string name="registro_rol">Rol</string>
+    <string name="registro_finalizar">Finalizar</string>
+    <string name="terminos_condiciones">Acepto los términos y condiciones</string>
+    <string name="Admin">Administrador</string>
+    <string name="buscar">Buscar</string>
+    <string name="modulo">Acceso Módulos</string>
+    <string name="documentos">Documentos</string>
+    <string name="crearAlerta">Crear Alerta</string>
+    <string name="ocr">Ocr</string>
+    <string name="blistado">Listado de alertas</string>
+    <string name="empleado">Un desarrollo de un proceso lógico y por etapas, basado en la mejora continua, que incluye la política
+    la organización, la planificación, la palicación, la evaluación, la auditoría y las acciones de mejora con el objetivo
+    de anticipar, reconocer y evaluar</string>
+
+    <string name="Type">Tipo</string>
+    <string name="Description">Descripción</string>
+    <string name="Url">URL</string>
+    <string name="Status">Estado</string>
+
+    <string name="usuario">Usuario</string>
+    <string name="registro_Descripcion">Descripcion</string>
+    <string name="Justification">Justificacion</string>
+    <string name="severidad">Severidad</string>
+    <string name="novedad_crear">Crear Novedad</string>
+
+    <string name="addNovedades">Agregar</string>
+    <string name="rNovedades">Registro de novedades</string>
+    <string name="hintTipoDoc">Tipo de Documento</string>
 </resources>
