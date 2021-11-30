@@ -37,11 +37,14 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    //inplemntacion y registro de la app en firebase
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-analytics'
 
     //autenticacion de usuario con firebase
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
+    //autenticacion de usuario con firebase-google
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
     //Base de datos de  Firestore
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
 }

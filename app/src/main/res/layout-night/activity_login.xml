@@ -125,7 +125,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="22dp"
         android:background="@drawable/secundary_button"
-        android:drawableStart="@drawable/google"
+        android:drawableStart="@drawable/google24px"
         android:drawablePadding="25dp"
         android:padding="10dp"
         android:paddingStart="10dp"

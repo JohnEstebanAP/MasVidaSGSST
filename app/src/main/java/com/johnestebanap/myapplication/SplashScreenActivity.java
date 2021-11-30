@@ -2,7 +2,9 @@ package com.johnestebanap.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -28,14 +30,24 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //Abrimos conecion con firebase y solicitamos si hay un usuario logeado
         FirebaseUser user = mAuth.getCurrentUser();
 
-        if (user != null) {
-            Toast.makeText(this, "s "+user, Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, HomeActivity.class));
+        //se inicia el SharedPreferences para verificar si hay un usuario logeado por este medio.
+        SharedPreferences prefs = (SharedPreferences) getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        String email = prefs.getString("email",null);
+        Toast.makeText(this, ""+email, Toast.LENGTH_SHORT).show();
+        if (email != null) {
+            showHome(email);
         } else {
             startActivity(new Intent(this, LoginActivity.class));
        }
        super.finish();//para finalizar la actividad y no quede en segundo plano avierta por detras luego de avirla otra actividad.
+    }
+
+    private void showHome(String email) {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("email", email);
+        startActivity(intent);
     }
 }

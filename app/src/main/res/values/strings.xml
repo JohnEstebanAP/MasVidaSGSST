@@ -36,4 +36,8 @@
     <string name="addNovedades">Agregar</string>
     <string name="rNovedades">Registro de novedades</string>
     <string name="hintTipoDoc">Tipo de Documento</string>
+
+
+    //Nombre de los SharedPreferences
+    <string name="prefs_file">com.johnestebanap.myapplication.PREFERENCE_FILE_KEY</string>
 </resources>
