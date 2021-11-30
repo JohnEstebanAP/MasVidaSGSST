@@ -1,5 +1,6 @@
 package com.johnestebanap.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +10,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
@@ -21,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
+    BottomNavigationView bottomNavigation;
 
     private FirebaseAuth mAuth;
     @Override
@@ -31,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.topAppBar);
         drawerLayout=findViewById(R.id.drawer_layaout);
         navigationView=findViewById(R.id.navigation_view);
+        bottomNavigation=findViewById(R.id.bottom_navigation);
 
         actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
                 R.string.open_nav,
@@ -63,6 +69,25 @@ public class HomeActivity extends AppCompatActivity {
                     return false;
             }
         } );
+
+        bottomNavigation.setSelectedItemId(R.id.bnv_documentos);
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.bnv_documentos:
+                        Toast.makeText(HomeActivity.this, "Documentos", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.bnv_ocr:
+                        Toast.makeText(HomeActivity.this, "ocr", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.bnv_qr:
+                        Toast.makeText(HomeActivity.this, "qr", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return true;
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         String email = getIntent().getExtras().getString("email");

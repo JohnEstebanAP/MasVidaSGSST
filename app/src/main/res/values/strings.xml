@@ -47,4 +47,6 @@
 
     //Flaticon
     <string name="flaticon">Algunos iconos e imagenes fueron tomadas de Flaticon \nIconos diseñados por https://www.flaticon.es/autores/eucalyp </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
