@@ -14,11 +14,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.dynamic.SupportFragmentWrapper;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.johnestebanap.myapplication.fragments.HomeFragment;
+
 public class HomeActivity extends AppCompatActivity {
 
     MaterialToolbar toolbar;
@@ -37,6 +40,9 @@ public class HomeActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawer_layaout);
         navigationView=findViewById(R.id.navigation_view);
         bottomNavigation=findViewById(R.id.bottom_navigation);
+
+       // El Fragment que se muestra por defecto
+        showHome();
 
         actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
                 R.string.open_nav,
@@ -109,6 +115,10 @@ public class HomeActivity extends AppCompatActivity {
         mAuth.signOut();
         //eliminamos los datos del SharedPreferences
         getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit().clear().apply();
+    }
+
+    public void showHome(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new HomeFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 
 //    public void openOcr() {
