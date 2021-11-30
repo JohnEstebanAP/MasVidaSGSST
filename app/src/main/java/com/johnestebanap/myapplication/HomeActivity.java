@@ -24,6 +24,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.johnestebanap.myapplication.fragments.DocumentosFragment;
 import com.johnestebanap.myapplication.fragments.HomeFragment;
 import com.johnestebanap.myapplication.fragments.ListDocumentFragment;
@@ -54,8 +56,6 @@ public class HomeActivity extends AppCompatActivity {
         if (getIntent().getExtras().getString("url") != null && !TextUtils.isEmpty(getIntent().getExtras().getString("url"))) {
             String url = getIntent().getExtras().getString("url");
             showWebView(url);
-        } else {
-            Toast.makeText(this, "Url nula", Toast.LENGTH_SHORT).show();
         }
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -77,6 +77,7 @@ public class HomeActivity extends AppCompatActivity {
                     // showCreateUser();
                     return true;
                 case R.id.mn_qr:
+                    showQr();
                     return true;
                 case R.id.mn_settings:
                     return true;
@@ -101,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
                         Toast.makeText(HomeActivity.this, "ocr", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.bnv_qr:
-                        Toast.makeText(HomeActivity.this, "qr", Toast.LENGTH_SHORT).show();
+                        showQr();
                         break;
                 }
                 return true;
@@ -146,10 +147,10 @@ public class HomeActivity extends AppCompatActivity {
 
     public void showWebView(String url) {
         Bundle args = new Bundle();
-        args.putString("url",getIntent().getExtras().getString("url"));
+        args.putString("url",url);
         WebViewFragment webViewFragment = new WebViewFragment();
         webViewFragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment,webViewFragment).setReorderingAllowed(true).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, webViewFragment).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 
 //    public void openNovedades () {
@@ -157,27 +158,27 @@ public class HomeActivity extends AppCompatActivity {
 //        startActivity(novedades);
 //    }
 
-//    public void openQr(){
-//        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-//        intentIntegrator.initiateScan();
-//        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
-//        intentIntegrator.setPrompt("Selecciona el QR.");
-//        intentIntegrator.setTorchEnabled(true);
-//        intentIntegrator.setBeepEnabled(true);
-//        intentIntegrator.initiateScan();
-//    }
+    public void showQr() {
+        IntentIntegrator intentIntegrator = new IntentIntegrator(this);
+        intentIntegrator.initiateScan();
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+        intentIntegrator.setPrompt("Selecciona el QR.");
+        intentIntegrator.setTorchEnabled(true);
+        intentIntegrator.setBeepEnabled(true);
+        intentIntegrator.initiateScan();
+    }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-//        if (result != null) {
-//            Toast.makeText(this, "El valor scaneado es:" + result.getContents(), Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(this, WebViewDocumentoActivity.class);
-//            intent.putExtra("url",result.getContents() );
-//            startActivity(intent);
-//        } else {
-//            Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            String url = result.getContents().toString();
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("url",url);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 }

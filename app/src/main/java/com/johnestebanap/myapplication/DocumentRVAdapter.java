@@ -76,7 +76,6 @@ public class DocumentRVAdapter extends RecyclerView.Adapter<DocumentRVAdapter.Vi
         holder.btnURL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Presiono boton: "+position+" y la url es: "+ holder.tvDocumentUrl.getText(), Toast.LENGTH_SHORT).show();
                 // Cargamos el Fragmen de la WebView
                 Intent intent = new Intent(context, HomeActivity.class);
                 intent.putExtra("url",holder.tvDocumentUrl.getText().toString());
