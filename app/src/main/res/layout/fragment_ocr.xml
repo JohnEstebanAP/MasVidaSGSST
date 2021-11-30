@@ -8,6 +8,8 @@
 
 
     <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -18,7 +20,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ly_validacion_cedula"
             android:layout_width="match_parent"
-            android:layout_height="22dp"
+            android:layout_height="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -47,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            android:layout_weight="32"
+            android:layout_weight="33"
             android:elevation="10dp"
             android:padding="20dp"
             app:cardCornerRadius="25dp">
@@ -99,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="10dp"
-            android:layout_weight="32"
+            android:layout_weight="33"
             android:elevation="10dp"
             android:padding="20dp"
             app:cardCornerRadius="25dp">

@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/fragment_documentos.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_list_document.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_ocr.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ocr.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_web_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/rv_document_item.xml" value="0.33" />

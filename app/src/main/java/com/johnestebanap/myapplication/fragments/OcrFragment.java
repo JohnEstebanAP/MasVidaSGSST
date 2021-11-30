@@ -306,12 +306,12 @@ public class OcrFragment extends Fragment {
 
         if(validacionCedulasvector[0]==1){
             //se hace visible la imagen del check
-            showToast("validacion correcta, con un porcentaje de: "+validacionCedulasvector[1]+"%");
+           // showToast("validacion correcta, con un porcentaje de: "+validacionCedulasvector[1]+"%");
             imgProgresIndicator.setImageResource(R.drawable.cheque);
             imgProgresIndicator.setColorFilter(ContextCompat.getColor(getContext(),
                     R.color.color_green));
         }else{
-            showToast("validacion Incorecta, con un porcentaje de: "+validacionCedulasvector[1]+"%");
+            //showToast("validacion Incorecta, con un porcentaje de: "+validacionCedulasvector[1]+"%");
             imgProgresIndicator.setImageResource(android.R.drawable.ic_delete);
             imgProgresIndicator.clearColorFilter();
             imgProgresIndicator.setColorFilter(ContextCompat.getColor(getContext(), R.color.color_red));

@@ -7,12 +7,13 @@
     tools:context=".fragments.OcrFragment">
 
     <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:weightSum="100"
-        android:background="@color/fondo_darck">
+        android:weightSum="100">
 
 
         <com.google.android.material.textfield.TextInputLayout
