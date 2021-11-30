@@ -1,7 +1,9 @@
 package com.johnestebanap.myapplication;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,13 +12,58 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
+
+    MaterialToolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        toolbar=findViewById(R.id.topAppBar);
+        drawerLayout=findViewById(R.id.drawer_layaout);
+        navigationView=findViewById(R.id.navigation_view);
+
+        actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
+                R.string.open_nav,
+                R.string.close_nav);//leyendo el nav drawer
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(item ->
+        {
+            switch (item.getItemId())
+            {
+                case R.id.mn_home:
+                   // showFragment(0);
+                    return true;
+                case R.id.mn_Documentos:
+                   // showFragment(1);
+                    return true;
+                case R.id.mn_ocr:
+                   // showCreateUser();
+                    return true;
+                case R.id.mn_qr:
+                    return true;
+                case R.id.mn_settings:
+                    return true;
+                case R.id.mn_info:
+                    return true;
+                case R.id.mn_salir:
+                    return true;
+                default:
+                    return false;
+            }
+        } );
+
         mAuth = FirebaseAuth.getInstance();
         String email = getIntent().getExtras().getString("email");
         //Guardar datos
@@ -24,7 +71,6 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("email",email);
         editor.commit();
-        Toast.makeText(this, "home: "+email, Toast.LENGTH_SHORT).show();
     }
 
     @Override

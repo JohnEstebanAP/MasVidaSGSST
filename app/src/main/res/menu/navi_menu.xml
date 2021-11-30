@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/grup_navigation"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/mn_home"
+            android:checked="true"
+            android:title="Home"
+            android:icon="@drawable/ic_home_24"/>
+
+        <item
+            android:id="@+id/mn_Documentos"
+            android:enabled="true"
+            android:title="Documentos"
+            android:icon="@drawable/todolist"
+            />
+        <item
+            android:id="@+id/mn_ocr"
+            android:enabled="true"
+            android:title="Agregar Carnet"
+            android:icon="@drawable/ic_camera_24"/>
+        <item
+            android:id="@+id/mn_qr"
+            android:enabled="true"
+            android:title="Escaner QR"
+            android:icon="@drawable/ic_qr_code_scanner_24"/>
+    </group>
+
+
+    <group
+        android:id="@+id/grup_navigation_bottom"
+        android:checkableBehavior="single">
+
+        <item android:title="Opciónes">
+            <menu>
+                <item
+                    android:id="@+id/mn_settings"
+                    android:enabled="true"
+                    android:title="Configuracion"
+                    android:icon="@drawable/ic_baseline_miscellaneous_services_24"/>
+
+                <item
+                    android:id="@+id/mn_info"
+                    android:enabled="true"
+                    android:icon="@android:drawable/ic_dialog_info"
+                    android:title="información" />
+
+                <item
+                    android:id="@+id/mn_salir"
+                    android:icon="@drawable/ic_exit_to_app_24"
+                    android:enabled="true"
+                    android:title="salir" />
+                <item android:title=""
+                    android:enabled="false"/>
+                <item android:title=""
+                    android:enabled="false"/>
+            </menu>
+        </item>
+    </group>
+
+    <item  android:title="Version: 1.0.0">
+        <menu>
+            <item android:enabled="false"
+                android:title="" />
+        </menu>
+    </item>
+</menu>

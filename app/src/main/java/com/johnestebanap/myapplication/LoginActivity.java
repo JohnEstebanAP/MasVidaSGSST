@@ -73,8 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(LoginActivity.this, "Bienvenid@", Toast.LENGTH_SHORT).show();
-                                        showHome(account.getEmail());
+                                          showHome(account.getEmail());
                                     } else {
                                         showAlertError();
                                         Log.w("TAG", "Error", task.getException());
@@ -97,7 +96,6 @@ public class LoginActivity extends AppCompatActivity {
         editTxtUser = (EditText) findViewById(R.id.txtUser);
         ediTxtPassword = (EditText) findViewById(R.id.txtPassword);
 
-        preferences = getSharedPreferences("usuarios", MODE_PRIVATE);
         String user1 = "sg-sst"; // Nombre Shared
         String user2 = "empleado";
         String pass = "123456789"; //Pass Shared
@@ -113,44 +111,39 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingrese una Contraseña", Toast.LENGTH_SHORT).show();
             ediTxtPassword.requestFocus();
         } else {
-            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
-                    new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Bienvenid@", Toast.LENGTH_SHORT).show();
-                                showHome(email);
-                            } else {
-                                showAlertError();
-                                Log.w("TAG", "Error", task.getException());
-                            }
-                        }
-                    }
-            );
-
-        }
-
-        if (user1.equals(email) && pass.equals(password)) {
-            //Toast.makeText(MainActivity.this, "SG SST", Toast.LENGTH_SHORT).show();
-            preferences = getSharedPreferences("guest", MODE_PRIVATE);
-            editor = preferences.edit();
-            editor.putString("Name", "sg-sst");
-            editor.putString("Pass", "123456789");
-            editor.putString("rol", "1");
-            editor.commit();
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
-        } else {
-            if (user2.equals(email) && pass.equals(password)) {
-                //Toast.makeText(MainActivity.this, "empleado", Toast.LENGTH_SHORT).show();
+            if (user1.equals(email) && pass.equals(password)) {
                 preferences = getSharedPreferences("guest", MODE_PRIVATE);
                 editor = preferences.edit();
-                editor.putString("Name", "empleado");
+                editor.putString("Name", "sg-sst");
                 editor.putString("Pass", "123456789");
-                editor.putString("rol", "8");
+                editor.putString("rol", "1");
                 editor.commit();
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                showHome(email);
+            } else {
+                if (user2.equals(email) && pass.equals(password)) {
+                    //Toast.makeText(MainActivity.this, "empleado", Toast.LENGTH_SHORT).show();
+                    preferences = getSharedPreferences("guest", MODE_PRIVATE);
+                    editor = preferences.edit();
+                    editor.putString("Name", "empleado");
+                    editor.putString("Pass", "123456789");
+                    editor.putString("rol", "8");
+                    editor.commit();
+                    showHome(email);
+                }else{
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                            new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        showHome(email);
+                                    } else {
+                                        showAlertError();
+                                        Log.w("TAG", "Error", task.getException());
+                                    }
+                                }
+                            }
+                    );
+                }
             }
         }
     }

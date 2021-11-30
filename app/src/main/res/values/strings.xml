@@ -40,4 +40,8 @@
 
     //Nombre de los SharedPreferences
     <string name="prefs_file">com.johnestebanap.myapplication.PREFERENCE_FILE_KEY</string>
+
+    //Menu de navegacion superior
+    <string name="open_nav">Open navigation drawer</string>
+    <string name="close_nav">Close navigation drawer</string>
 </resources>
