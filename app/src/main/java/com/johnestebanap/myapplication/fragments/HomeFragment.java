@@ -19,7 +19,7 @@ import com.johnestebanap.myapplication.R;
 
 public class HomeFragment extends Fragment {
 
-    Button btnDucmentosList,btnQr;
+    Button btnDucmentosList,btnQr,btnOcr;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -37,8 +37,10 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         btnDucmentosList = view.findViewById(R.id.btn_documentos);
         btnQr = view.findViewById(R.id.btn_qr);
+        btnOcr = view.findViewById(R.id.btn_ocr);
         btnDucmentosList.setOnClickListener(v -> showListDocuments());
         btnQr.setOnClickListener(v -> showQr());
+        btnOcr.setOnClickListener(v -> openOcr());
         return view;
     }
 
@@ -78,5 +80,9 @@ public class HomeFragment extends Fragment {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_fragment, webViewFragment);
         fragmentTransaction.commit();
+    }
+
+    public void openOcr() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new OcrFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 }

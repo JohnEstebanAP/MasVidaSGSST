@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.gms.dynamic.SupportFragmentWrapper;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -86,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.mn_info:
                     return true;
                 case R.id.mn_salir:
-                    closeAndDelogearse();
+                    showAlerSalir();
                     return true;
                 default:
                     return false;
@@ -185,5 +186,27 @@ public class HomeActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Aceptar", null);
         alertDialog.setNegativeButton("Canselar",null);
         alertDialog.create().show();
+    }
+
+    private void showAlerSalir() {
+        String title = "¿Esta seguro de querer salir?";
+        String message = "Si sale de la aplicacíon perderá todo el progreso y se cancelara la sesion";
+        String btnNegative = "Canselar";
+        String btnPositive = "Salir";
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton(btnNegative, (dialogInterface, i) -> dialogInterface.cancel())
+                .setPositiveButton(btnPositive, (dialogInterface, i) -> {
+                    closeAndDelogearse();
+                    super.finishAndRemoveTask();
+                })
+                .show();
+        /*
+        super.finish(); // para finalisr mi activadad
+        super.finishAffinity();//Serar la aplicacion completa
+        super.finishAndRemoveTask();//finalisar la actividad y remover e la vasurera para que no quede abierta en segundo plano
+        */
     }
 }
