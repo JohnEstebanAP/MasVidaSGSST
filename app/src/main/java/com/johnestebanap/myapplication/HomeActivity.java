@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.johnestebanap.myapplication.fragments.DocumentosFragment;
 import com.johnestebanap.myapplication.fragments.HomeFragment;
 import com.johnestebanap.myapplication.fragments.ListDocumentFragment;
+import com.johnestebanap.myapplication.fragments.OcrFragment;
 import com.johnestebanap.myapplication.fragments.WebViewFragment;
 
 public class HomeActivity extends AppCompatActivity {
@@ -74,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
                     showListDocumentos();
                     return true;
                 case R.id.mn_ocr:
-                    // showCreateUser();
+                    openOcr();
                     return true;
                 case R.id.mn_qr:
                     showQr();
@@ -84,6 +86,7 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.mn_info:
                     return true;
                 case R.id.mn_salir:
+                    closeAndDelogearse();
                     return true;
                 default:
                     return false;
@@ -99,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
                         showListDocumentos();
                         break;
                     case R.id.bnv_ocr:
-                        Toast.makeText(HomeActivity.this, "ocr", Toast.LENGTH_SHORT).show();
+                        openOcr();
                         break;
                     case R.id.bnv_qr:
                         showQr();
@@ -120,12 +123,11 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-//        Intent intent=new Intent(this,MainActivity.class);
-//        startActivity(intent);
+
     }
 
     public void closeAndDelogearse() {
+        Toast.makeText(this, "sesión cerrada", Toast.LENGTH_SHORT).show();
         //borrar datos de secion
         mAuth.signOut();
         //eliminamos los datos del SharedPreferences
@@ -136,10 +138,9 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new HomeFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 
-//    public void openOcr() {
-//        Intent ocr = new Intent(this, OcrLocalActivity.class);
-//        startActivity(ocr);
-//    }
+    public void openOcr() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new OcrFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
+    }
 
     public void showListDocumentos() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new ListDocumentFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
@@ -152,11 +153,6 @@ public class HomeActivity extends AppCompatActivity {
         webViewFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, webViewFragment).setReorderingAllowed(true).addToBackStack(null).commit();
     }
-
-//    public void openNovedades () {
-//        Intent novedades = new Intent(this, ListDocumentsActivity.class);
-//        startActivity(novedades);
-//    }
 
     public void showQr() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
@@ -180,5 +176,14 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void showAler(String title,String ms) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(ms);
+        alertDialog.setPositiveButton("Aceptar", null);
+        alertDialog.setNegativeButton("Canselar",null);
+        alertDialog.create().show();
     }
 }
