@@ -15,13 +15,16 @@
         <entry key="app/src/main/res/layout-night/activity_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout-night/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout-night/activity_registro.xml" value="0.22" />
+        <entry key="app/src/main/res/layout-night/button_navigation.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/layout/activity_registro.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/button_navigation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/nav_header.xml" value="0.2609375" />
         <entry key="app/src/main/res/layout/toolbar.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.2630208333333333" />
         <entry key="app/src/main/res/menu/navi_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.2609375" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bnv_ocr"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera_24"
+        android:title="Carnet"/>
+    <item
+        android:id="@+id/bnv_documentos"
+        android:enabled="true"
+        android:icon="@drawable/todolist"
+        android:title="Documentos"/>
+    <item
+    android:id="@+id/bnv_qr"
+    android:enabled="true"
+    android:icon="@drawable/ic_qr_code_scanner_24"
+    android:title="Scaner qr"/>
+</menu>
