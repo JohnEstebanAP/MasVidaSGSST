@@ -333,7 +333,7 @@ public class OcrFragment extends Fragment {
                 progressIndicator.setVisibility(View.GONE);
                 imgProgresIndicator.setVisibility(View.VISIBLE);
             }
-        }, 5000);
+        }, 4000);
     }
 
     private void cargarBarraProgreso() {
@@ -515,7 +515,7 @@ public class OcrFragment extends Fragment {
 
         double[] resultado = new double[2];
 
-        showToast("Porcentaje octenido :" + porcentajeValido);
+       // showToast("Porcentaje octenido :" + porcentajeValido);
         if (porcentajeValido >= 80) {
             resultado[0] = 1;
             resultado[1] = porcentajeValido;

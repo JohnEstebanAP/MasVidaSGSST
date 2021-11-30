@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class HomeFragment extends Fragment {
 
     public void showQr() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
-        intentIntegrator.initiateScan();
+       // intentIntegrator.initiateScan();
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         intentIntegrator.setPrompt("Selecciona el QR.");
         intentIntegrator.setTorchEnabled(true);
@@ -62,14 +63,19 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-            String url = result.getContents().toString();
-            showWebView(url);
-        } else {
-            Toast.makeText(getContext(), "Cancelado", Toast.LENGTH_SHORT).show();
+        try{
+            IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
             super.onActivityResult(requestCode, resultCode, data);
+            if (result != null && !TextUtils.isEmpty(result.getContents().toString())) {
+                String url = result.getContents().toString();
+                showWebView(url);
+            } else {
+                //Toast.makeText(getContext(), "Cancelado", Toast.LENGTH_SHORT).show();
+            }
+        }finally {
+
         }
+
     }
 
     public void showWebView(String url) {

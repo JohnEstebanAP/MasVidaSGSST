@@ -124,7 +124,10 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
+        String url = "";
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("url",url);
+        startActivity(intent);
     }
 
     public void closeAndDelogearse() {
@@ -155,9 +158,9 @@ public class HomeActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, webViewFragment).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 
-    public void showQr() {
+    public void showQr(){
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
-        intentIntegrator.initiateScan();
+       // intentIntegrator.initiateScan();
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
         intentIntegrator.setPrompt("Selecciona el QR.");
         intentIntegrator.setTorchEnabled(true);
@@ -167,16 +170,21 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (result != null) {
-            String url = result.getContents().toString();
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.putExtra("url",url);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+      try {
+          IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+          super.onActivityResult(requestCode, resultCode, data);
+          if (result != null && !TextUtils.isEmpty(result.getContents().toString())) {
+              String url = result.getContents().toString();
+              Intent intent = new Intent(this, HomeActivity.class);
+              intent.putExtra("url",url);
+              startActivity(intent);
+          } else {
+              //Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
+          }
+      }finally {
+
+      }
+
     }
 
     private void showAler(String title,String ms) {
