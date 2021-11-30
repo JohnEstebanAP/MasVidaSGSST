@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.johnestebanap.myapplication.db.Document;
+import com.johnestebanap.myapplication.fragments.ListDocumentFragment;
 
 import java.util.ArrayList;
 
@@ -75,10 +77,10 @@ public class DocumentRVAdapter extends RecyclerView.Adapter<DocumentRVAdapter.Vi
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "Presiono boton: "+position+" y la url es: "+ holder.tvDocumentUrl.getText(), Toast.LENGTH_SHORT).show();
-
-               /*     Intent intent = new Intent(context, WebViewDocumentoActivity.class);
-                    intent.putExtra("url", holder.tvDocumentUrl.getText());
-                    context.startActivity(intent);*/
+                // Cargamos el Fragmen de la WebView
+                Intent intent = new Intent(context, HomeActivity.class);
+                intent.putExtra("url",holder.tvDocumentUrl.getText().toString());
+                context.startActivity(intent);
             }
         });
 

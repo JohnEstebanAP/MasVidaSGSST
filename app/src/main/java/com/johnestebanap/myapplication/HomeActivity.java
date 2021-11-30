@@ -6,11 +6,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -24,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.johnestebanap.myapplication.fragments.DocumentosFragment;
 import com.johnestebanap.myapplication.fragments.HomeFragment;
 import com.johnestebanap.myapplication.fragments.ListDocumentFragment;
+import com.johnestebanap.myapplication.fragments.WebViewFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -47,6 +51,12 @@ public class HomeActivity extends AppCompatActivity {
 
         // El Fragment que se muestra por defecto
         showHome();
+        if (getIntent().getExtras().getString("url") != null && !TextUtils.isEmpty(getIntent().getExtras().getString("url"))) {
+            String url = getIntent().getExtras().getString("url");
+            showWebView(url);
+        } else {
+            Toast.makeText(this, "Url nula", Toast.LENGTH_SHORT).show();
+        }
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.open_nav,
@@ -131,12 +141,16 @@ public class HomeActivity extends AppCompatActivity {
 //    }
 
     public void showListDocumentos() {
-            getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new ListDocumentFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new ListDocumentFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 
-//    public static void showDocumentos() {
-//      static int frag = getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new DocumentosFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
-//    }
+    public void showWebView(String url) {
+        Bundle args = new Bundle();
+        args.putString("url",getIntent().getExtras().getString("url"));
+        WebViewFragment webViewFragment = new WebViewFragment();
+        webViewFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment,webViewFragment).setReorderingAllowed(true).addToBackStack(null).commit();
+    }
 
 //    public void openNovedades () {
 //        Intent novedades = new Intent(this, ListDocumentsActivity.class);

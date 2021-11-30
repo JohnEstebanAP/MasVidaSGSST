@@ -106,6 +106,7 @@ public class ListDocumentFragment extends Fragment {
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container_fragment, new DocumentosFragment());
         fragmentTransaction.commit();
+
     }
 
 }

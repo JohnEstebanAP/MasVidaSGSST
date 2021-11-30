@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MasVidaSGSST">
         <activity
-            android:name=".DocumentActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegistroActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -36,10 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
