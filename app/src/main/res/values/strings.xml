@@ -19,8 +19,8 @@
     <string name="ocr">Ocr</string>
     <string name="blistado">Listado de alertas</string>
     <string name="empleado">Un desarrollo de un proceso lógico y por etapas, basado en la mejora continua, que incluye la política
-    la organización, la planificación, la palicación, la evaluación, la auditoría y las acciones de mejora con el objetivo
-    de anticipar, reconocer y evaluar</string>
+    la organización, planificación, evaluación, auditoría y las acciones de mejora con el objetivo
+    de anticipar, reconocer y evaluar.</string>
 
     <string name="Type">Tipo</string>
     <string name="Description">Descripción</string>
@@ -44,4 +44,7 @@
     //Menu de navegacion superior
     <string name="open_nav">Open navigation drawer</string>
     <string name="close_nav">Close navigation drawer</string>
+
+    //Flaticon
+    <string name="flaticon">Algunos iconos e imagenes fueron tomadas de Flaticon \nIconos diseñados por https://www.flaticon.es/autores/eucalyp </string>
 </resources>
