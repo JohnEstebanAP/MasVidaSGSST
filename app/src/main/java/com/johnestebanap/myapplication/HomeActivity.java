@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +21,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.johnestebanap.myapplication.fragments.DocumentosFragment;
 import com.johnestebanap.myapplication.fragments.HomeFragment;
+import com.johnestebanap.myapplication.fragments.ListDocumentFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -31,20 +34,21 @@ public class HomeActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
 
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        toolbar=findViewById(R.id.topAppBar);
-        drawerLayout=findViewById(R.id.drawer_layaout);
-        navigationView=findViewById(R.id.navigation_view);
-        bottomNavigation=findViewById(R.id.bottom_navigation);
+        toolbar = findViewById(R.id.topAppBar);
+        drawerLayout = findViewById(R.id.drawer_layaout);
+        navigationView = findViewById(R.id.navigation_view);
+        bottomNavigation = findViewById(R.id.bottom_navigation);
 
-       // El Fragment que se muestra por defecto
+        // El Fragment que se muestra por defecto
         showHome();
 
-        actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.open_nav,
                 R.string.close_nav);//leyendo el nav drawer
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -52,16 +56,15 @@ public class HomeActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(item ->
         {
-            switch (item.getItemId())
-            {
+            switch (item.getItemId()) {
                 case R.id.mn_home:
-                   // showFragment(0);
+                    showHome();
                     return true;
                 case R.id.mn_Documentos:
-                   // showFragment(1);
+                    showListDocumentos();
                     return true;
                 case R.id.mn_ocr:
-                   // showCreateUser();
+                    // showCreateUser();
                     return true;
                 case R.id.mn_qr:
                     return true;
@@ -74,15 +77,15 @@ public class HomeActivity extends AppCompatActivity {
                 default:
                     return false;
             }
-        } );
+        });
 
         bottomNavigation.setSelectedItemId(R.id.bnv_documentos);
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.bnv_documentos:
-                        Toast.makeText(HomeActivity.this, "Documentos", Toast.LENGTH_SHORT).show();
+                        showListDocumentos();
                         break;
                     case R.id.bnv_ocr:
                         Toast.makeText(HomeActivity.this, "ocr", Toast.LENGTH_SHORT).show();
@@ -100,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
         //Guardar datos
         SharedPreferences prefs = (SharedPreferences) getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("email",email);
+        editor.putString("email", email);
         editor.commit();
     }
 
@@ -110,14 +113,15 @@ public class HomeActivity extends AppCompatActivity {
 //        Intent intent=new Intent(this,MainActivity.class);
 //        startActivity(intent);
     }
-    public void closeAndDelogearse(){
+
+    public void closeAndDelogearse() {
         //borrar datos de secion
         mAuth.signOut();
         //eliminamos los datos del SharedPreferences
         getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE).edit().clear().apply();
     }
 
-    public void showHome(){
+    public void showHome() {
         getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new HomeFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
     }
 
@@ -126,9 +130,12 @@ public class HomeActivity extends AppCompatActivity {
 //        startActivity(ocr);
 //    }
 
-//    public void openDocumentos() {
-//        Intent documentos = new Intent(this, Documentos.class);
-//        startActivity(documentos);
+    public void showListDocumentos() {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new ListDocumentFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
+    }
+
+//    public static void showDocumentos() {
+//      static int frag = getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, new DocumentosFragment()).setReorderingAllowed(true).addToBackStack(null).commit();
 //    }
 
 //    public void openNovedades () {
